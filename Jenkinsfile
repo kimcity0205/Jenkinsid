@@ -6,6 +6,7 @@ pipeline {
         git url: 'https://github.com/kimcity0205/Jenkinsid.git', branch: 'main'
       }
     }
+
     stage('docker') {
       steps {
         sh '''
