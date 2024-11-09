@@ -27,6 +27,6 @@ pipeline {
           ansible-playbook -i /etc/ansible/hosts /var/lib/jenkins/podtest.yml
         '''
       }
-	  }
+    }
   }
 }
