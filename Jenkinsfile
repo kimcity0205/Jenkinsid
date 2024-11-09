@@ -24,8 +24,8 @@ pipeline {
       steps {
         sh '''
           sudo apt update
-          sudo apt install python3-pip
-          sudo pip3 install kubernetes
+          sudo apt -y install python3-pip
+          sudo pip3 -y install kubernetes
           ansible-playbook -i /etc/ansible/hosts /var/lib/jenkins/podtest.yml
         '''
       }
