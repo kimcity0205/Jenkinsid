@@ -23,7 +23,7 @@ pipeline {
     stage('dp and svc') {
       steps {
         sh '''
-          ansible-playbook /var/lib/jenkins/podtest.yml
+          ansible-playbook -i /etc/ansible/hosts /var/lib/jenkins/podtest.yml
         '''
       }
     }
