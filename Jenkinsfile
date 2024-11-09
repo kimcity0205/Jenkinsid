@@ -23,6 +23,9 @@ pipeline {
     stage('dp and svc') {
       steps {
         sh '''
+          sudo apt update
+          sudo apt install python3-pip
+          sudo pip3 install kubernetes
           ansible-playbook -i /etc/ansible/hosts /var/lib/jenkins/podtest.yml
         '''
       }
