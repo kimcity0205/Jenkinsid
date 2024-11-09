@@ -23,6 +23,7 @@ pipeline {
     stage('dp and svc') {
       steps {
         sh '''
+          export ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3
           pip3 install kubernetes
           ansible-playbook -i /etc/ansible/hosts /var/lib/jenkins/podtest.yml
         '''
