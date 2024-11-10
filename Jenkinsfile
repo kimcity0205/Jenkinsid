@@ -4,16 +4,21 @@ pipeline {
     DOCKER_IMAGE = "kimcity0205/report:image1"
   }
   stages {
-    stage('git') {
+    stage('Git') {
       steps {
         git url: 'https://github.com/kimcity0205/Jenkinsid.git', branch: 'main'
       }
     }
-    stage('Copy k8s from Master') {
+    stage('kube jenkins') {
       steps {
         script {
-          // master 서버에서 kubeconfig 파일을 Jenkins 서버로 복사
-          sh "scp root@211.183.3.100:/root/.kube/config /var/lib/jenkins/.kube/config"
+          // .kube 디렉터리가 없으면 생성
+          sh '''
+            mkdir -p /var/lib/jenkins/.kube
+            sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube
+            sudo chmod -R 755 /var/lib/jenkins/.kube
+            scp root@211.183.3.100:/root/.kube/config /var/lib/jenkins/.kube/config
+          '''
         }
       }
     }
@@ -28,7 +33,7 @@ pipeline {
         }
       }
     }
-    stage('dp and svc') {
+    stage('Dp and Svc') {
       steps {
         // Ansible로 Kubernetes 배포 작업 수행
         sh '''
