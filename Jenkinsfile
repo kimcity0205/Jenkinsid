@@ -21,6 +21,7 @@ pipeline {
       steps {
         // Ansible로 Kubernetes 배포 작업 수행
         sh '''
+          ansible-playbook /var/lib/jenkins/nodtest.yml
           ansible-playbook /var/lib/jenkins/podtest.yml
         '''
       }
