@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-    DOCKER_IMAGE = "kimcity0205/report:image1"
-  }
   stages {
     stage('Git') {
       steps {
@@ -12,8 +9,8 @@ pipeline {
     stage('Docker hub') {
       steps {
         sh '''
-          sudo docker build -t ${DOCKER_IMAGE} .
-          sudo docker push ${DOCKER_IMAGE}
+          sudo docker build -t kimcity0205/report:image .
+          sudo docker push kimcity0205/report:image
         '''
       }
     }
@@ -21,8 +18,8 @@ pipeline {
       steps {
         // Ansible로 Kubernetes 배포 작업 수행
         sh '''
-          ansible-playbook /var/lib/jenkins/nodtest.yml
-          ansible-playbook /var/lib/jenkins/podtest.yml
+          ansible-playbook /var/lib/jenkins/nodes.yml
+          ansible-playbook /var/lib/jenkins/svc-deploy.yml
         '''
       }
     }
