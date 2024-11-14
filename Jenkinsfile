@@ -16,7 +16,6 @@ pipeline {
     }
     stage('Dp and Svc') {
       steps {
-        // Ansible로 Kubernetes 배포 작업 수행
         sh '''
           ansible-playbook /var/lib/jenkins/nodes.yml
           ansible-playbook /var/lib/jenkins/master.yml
