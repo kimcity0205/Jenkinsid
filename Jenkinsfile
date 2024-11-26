@@ -19,7 +19,7 @@ pipeline {
       steps {
         sh '''
         ansible-playbook /var/lib/jenkins/usernode.yml
-        ansible-playbook /var/lib/jenkins/Ansible.yml
+        ansible-playbook /var/lib/jenkins/master.yml
         '''
       }
     }
@@ -28,7 +28,7 @@ pipeline {
         withSonarQubeEnv('sonarQubeToken') {
           sh '''
           cd ./sonar-scanner \
-          sonar-scanner -Dsonar.projectKey=testCloud -Dsonar.sources=. -Dsonar.host.url=http://10.10.100.150:9000 -Dsonar.login=sqp_87397d8ba6b09d4faeab392dd4f7e1aa31607471
+          sonar-scanner -Dsonar.projectKey=echoCloud -Dsonar.sources=. -Dsonar.host.url=http://10.10.100.160:9000 -Dsonar.login=sqp_8e7bc799c333ec95c8dd2e136fd44a908d9a3e69 -Dsonar.exclusions=**/*.java
           '''
         }
       }
