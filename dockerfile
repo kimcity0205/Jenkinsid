@@ -1,2 +1,3 @@
-FROM nginx:latest
-COPY index.html /usr/share/nginx/html
+x:latest
+PY index.html /usr/share/nginx/html
+aadd
